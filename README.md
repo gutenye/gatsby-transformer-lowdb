@@ -4,7 +4,9 @@ Support [lowdb](https://github.com/typicode/lowdb) json format
 
 ## Install
 
-`npm install --save gatsby-transformer-lowdb`
+```
+yarn add gatsby-transformer-lowdb
+```
 
 ## How to use
 
