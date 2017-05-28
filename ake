@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+build() {
+  npm run build
+}
+
+
+case "$1" in
+  b | build ) build ;;
+esac
+

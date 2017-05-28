@@ -1,26 +1,16 @@
-const select = require(`unist-util-select`)
-const Promise = require(`bluebird`)
-const fs = require(`fs`)
 const _ = require(`lodash`)
 const crypto = require(`crypto`)
 
 async function onNodeCreate({ node, boundActionCreators, loadNodeContent }) {
   const { createNode, updateNode } = boundActionCreators
 
-  // Don't reprocess our own nodes!  (note: this doesn't normally happen
-  // but since this transformer creates new nodes with the same media-type
-  // as its parent node, we have to add this check that we didn't create
-  // the node).
-  if (node.internal.pluginName === `gatsby-transformer-lowdb`) {
+  // Only care source data with json
+  if (node.sourceInstanceName !== 'data' ||
+      node.internal.mediaType !== 'application/json')
     return
-  }
-
-  // We only care about JSON content.
-  if (node.internal.mediaType !== `application/json`) {
-    return
-  }
 
   const content = await loadNodeContent(node)
+
   _.forOwn(JSON.parse(content), (value, key) => {
     const JSONArray = value.map((obj, i) => {
       const objStr = JSON.stringify(obj)
@@ -42,8 +32,7 @@ async function onNodeCreate({ node, boundActionCreators, loadNodeContent }) {
       })
     })
 
-    //node.children = node.children.concat(JSONArray.map(n => n.id))
-    //updateNode(node)
+    //addNodeToParent({ parent: node, child: j })
     _.each(JSONArray, j => createNode(j))
   })
 
