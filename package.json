@@ -1,6 +1,6 @@
 {
   "name": "gatsby-transformer-lowdb",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Gatsby transformer plugin for lwodb JSON files",
   "scripts": {
     "build": "babel src --out-dir . --ignore __tests__",
