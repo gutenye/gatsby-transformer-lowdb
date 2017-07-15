@@ -1,8 +1,8 @@
 const _ = require(`lodash`)
 const crypto = require(`crypto`)
 
-async function onNodeCreate({ node, boundActionCreators, loadNodeContent }) {
-  const { createNode, updateNode } = boundActionCreators
+async function onCreateNode({ node, boundActionCreators, loadNodeContent }) {
+  const { createNode } = boundActionCreators
 
   // Only care source data with json
   if (node.sourceInstanceName !== 'data' ||
@@ -39,4 +39,4 @@ async function onNodeCreate({ node, boundActionCreators, loadNodeContent }) {
   return
 }
 
-exports.onNodeCreate = onNodeCreate
+exports.onCreateNode = onCreateNode

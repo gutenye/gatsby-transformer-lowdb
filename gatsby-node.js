@@ -2,7 +2,7 @@ const _ = require(`lodash`);
 const crypto = require(`crypto`);
 
 async function onCreateNode({ node, boundActionCreators, loadNodeContent }) {
-  const { createNode, updateNode } = boundActionCreators;
+  const { createNode } = boundActionCreators;
 
   // Only care source data with json
   if (node.sourceInstanceName !== 'data' || node.internal.mediaType !== 'application/json') return;
